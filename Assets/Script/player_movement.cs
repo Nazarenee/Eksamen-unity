@@ -20,19 +20,28 @@ public class PlayerMovement : MonoBehaviour
     {
         if (isAttacking) return; // Prevent movement while attacking
 
+        Vector3 newVelocity = playerRigidbody.linearVelocity; // Preserve current Y velocity (gravity effect)
+
         if (Input.GetKey(KeyCode.W))
         {
-            playerRigidbody.linearVelocity = transform.forward * walkSpeed * Time.deltaTime;
+            newVelocity.x = transform.forward.x * walkSpeed;
+            newVelocity.z = transform.forward.z * walkSpeed;
         }
         else if (Input.GetKey(KeyCode.S))
         {
-            playerRigidbody.linearVelocity = -transform.forward * walkBackwardSpeed * Time.deltaTime;
+            newVelocity.x = -transform.forward.x * walkBackwardSpeed;
+            newVelocity.z = -transform.forward.z * walkBackwardSpeed;
         }
         else
         {
-            playerRigidbody.linearVelocity = Vector3.zero;
+            newVelocity.x = 0;
+            newVelocity.z = 0;
         }
+
+        playerRigidbody.linearVelocity = newVelocity; // Assign velocity while keeping natural gravity
     }
+
+
 
     void Update()
     {
