@@ -147,4 +147,6 @@ public class PlayerMovement : MonoBehaviour
             playerAnimator.SetTrigger("idle"); // Ensure character goes to idle if no movement key is pressed
         }
     }
+    
+  
 }
