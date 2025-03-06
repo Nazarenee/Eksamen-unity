@@ -153,7 +153,7 @@ GameObject:
   - component: {fileID: 1858092584478446518}
   m_Layer: 0
   m_Name: Hunter
-  m_TagString: Player
+  m_TagString: Hunter
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -276,7 +276,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 116
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!114 &1858092584478446518
 MonoBehaviour:
@@ -290,15 +290,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 663fceb876d2c4e219c42ec38541a2e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerAnim: {fileID: 8239906556464330227}
-  playerRigid: {fileID: 3789500697112285283}
-  w_speed: 180
-  wb_speed: 180
-  olw_speed: 120
-  rn_speed: 160
-  ro_speed: 90
-  walking: 0
-  playerTrans: {fileID: 8420908649220438562}
+  playerAnimator: {fileID: 8239906556464330227}
+  playerRigidbody: {fileID: 3789500697112285283}
+  walkSpeed: 5
+  walkBackwardSpeed: 5
+  defaultWalkSpeed: 5
+  runSpeedBoost: 10
+  rotationSpeed: 90
+  isWalking: 0
+  isAttacking: 0
+  playerTransform: {fileID: 8420908649220438562}
 --- !u!1001 &134502838518936514
 PrefabInstance:
   m_ObjectHideFlags: 0
