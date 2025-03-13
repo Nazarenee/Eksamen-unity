@@ -3,42 +3,21 @@ using UnityEngine.Events;
 
 public class Bow : MonoBehaviour
 {
-    public UnityEvent OnBowShoot;
-    public float FireCooldown;
-    public bool Automatic;
-
-    private float CurrentCooldown;
-
-    void Start()
-    {
-        CurrentCooldown = FireCooldown;
-    }
+    public UnityEvent OnBowShoot; 
+    public float FireCooldown = 2f;  
+    private float currentCooldown = 0f;  
 
     void Update()
     {
-        if (Automatic)
+        if (Input.GetMouseButtonDown(0) && currentCooldown <= 0f)
         {
-            if (Input.GetMouseButton(0))
-            {
-                if (CurrentCooldown <= 0f)
-                {
-                    OnBowShoot?.Invoke();
-                    CurrentCooldown = FireCooldown;
-                }
-            }
-        }
-        else
-        {
-            if (Input.GetMouseButton(0))
-            {
-                if (CurrentCooldown <= 0f)
-                {
-                    OnBowShoot?.Invoke();
-                    CurrentCooldown = FireCooldown;
-                }
-            }
+            OnBowShoot?.Invoke();
+            currentCooldown = FireCooldown;
         }
 
-        CurrentCooldown -= Time.deltaTime;
+        if (currentCooldown > 0f)
+        {
+            currentCooldown -= Time.deltaTime;
+        }
     }
 }

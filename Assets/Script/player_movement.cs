@@ -18,9 +18,9 @@ public class PlayerMovement : MonoBehaviour
 	
     void FixedUpdate()
     {
-        if (isAttacking) return; // Prevent movement while attacking
+        if (isAttacking) return; 
 
-        Vector3 newVelocity = playerRigidbody.linearVelocity; // Preserve current Y velocity (gravity effect)
+        Vector3 newVelocity = playerRigidbody.linearVelocity; 
 
         if (Input.GetKey(KeyCode.W))
         {
@@ -78,11 +78,10 @@ public class PlayerMovement : MonoBehaviour
             playerTransform.Rotate(0, rotationSpeed * Time.deltaTime, 0);
         }
 
-        // ATTACK INPUT
         if (Input.GetMouseButtonDown(0))
         {
             isAttacking = true;
-            playerRigidbody.linearVelocity = Vector3.zero; // Stop movement
+            playerRigidbody.linearVelocity = Vector3.zero; // Stop movement while attacking
 
             if (gameObject.CompareTag("Warrior"))
             {
@@ -97,7 +96,6 @@ public class PlayerMovement : MonoBehaviour
                 playerAnimator.SetTrigger("magic");
             }
 
-            // Wait for attack animation to end
             StartCoroutine(ResetAttack());
         }
 
@@ -120,10 +118,9 @@ public class PlayerMovement : MonoBehaviour
 
     IEnumerator ResetAttack()
     {
-        yield return new WaitForSeconds(1f); // Adjust duration to match attack animation
+        yield return new WaitForSeconds(1f); 
         isAttacking = false;
 
-        // Restart movement animation if the player is still pressing a key
         if (Input.GetKey(KeyCode.W))
         {
             if (Input.GetKey(KeyCode.LeftShift))
@@ -144,7 +141,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            playerAnimator.SetTrigger("idle"); // Ensure character goes to idle if no movement key is pressed
+            playerAnimator.SetTrigger("idle"); 
         }
     }
     
