@@ -12,6 +12,7 @@ TagManager:
   - LobbyRoom
   - BossRoom
   - BossShopRoom
+  - Upgrade
   layers:
   - Default
   - TransparentFX
