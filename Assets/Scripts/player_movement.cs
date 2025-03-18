@@ -3,12 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem; // Required for Input System
 
+
 public class PlayerMovement : MonoBehaviour
 {
     private PlayerControls controls;
     private Vector2 moveInput;
     private bool isAttacking = false;
     private bool isSprinting = false;
+    public AudioSource audioSource; // Assign this in the inspector
+    public AudioClip bowDrawClip; // Assign the Bow Draw audio clip in the inspector
+    public AudioClip bowReleaseClip; // Assign the Bow Release audio clip in the inspector
+
 
     public Animator playerAnimator;
     public Rigidbody playerRigidbody;
@@ -128,6 +133,8 @@ public class PlayerMovement : MonoBehaviour
         Vector2 tempMoveInput = moveInput; // Save the current movement input
         moveInput = Vector2.zero; // Immediately stop movement when attacking
         playerRigidbody.linearVelocity = Vector3.zero; // Stop any movement during the attack animation
+        
+        audioSource.PlayOneShot(bowDrawClip);
 
         // Reset movement animation
         playerAnimator.ResetTrigger("walk");
@@ -147,8 +154,15 @@ public class PlayerMovement : MonoBehaviour
         {
             playerAnimator.SetTrigger("magic");
         }
+        StartCoroutine(PlayBowReleaseSound());
 
         StartCoroutine(ResetAttack(tempMoveInput));
+    }
+    
+    IEnumerator PlayBowReleaseSound()
+    {
+        yield return new WaitForSeconds(0.5f); 
+        audioSource.PlayOneShot(bowReleaseClip); 
     }
 
     IEnumerator ResetAttack(Vector2 savedMoveInput)
