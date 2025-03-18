@@ -9,7 +9,7 @@ public class Arrow : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         // Check if the arrow hits an object tagged "wood"
-        if (collision.gameObject.CompareTag("Wood"))
+        if (collision.gameObject.CompareTag("Upgrade"))
         {
             // Play the arrow hits wood sound
             PlaySound(arrowHitsWoodClip);
