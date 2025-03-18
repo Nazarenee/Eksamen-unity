@@ -1,0 +1,56 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7629470590308018773
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7135759442590307700}
+  - component: {fileID: 1848306347618175607}
+  m_Layer: 0
+  m_Name: GameController
+  m_TagString: GameController
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7135759442590307700
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7629470590308018773}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1848306347618175607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7629470590308018773}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fd38db6c9a3cf547ac9e84ef90d0179, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  combatRoomPrefabs:
+  - {fileID: 1046574961565282096, guid: 652fff6529869174dabcc19c97fa5483, type: 3}
+  - {fileID: 2994803383567216658, guid: cd08b9caa15e07d4880ee87ab76d6d80, type: 3}
+  - {fileID: 3821325385192489874, guid: 0b97d59238145f246a23d5ff0e0cdd39, type: 3}
+  - {fileID: 8224340844097246743, guid: 62388fafff7c70b4e804d1559abfc37e, type: 3}
+  lobbyRoomPrefab: {fileID: 4137628223530444123, guid: 5cc46c14f8faa6d42bf11b946a90d5d1, type: 3}
+  shopRoomPrefab: {fileID: 4137628223530444123, guid: ed0cb88ee9a646c4aa1d499fee9afebe, type: 3}
+  bossRoomPrefab: {fileID: 4137628223530444123, guid: ed0cb88ee9a646c4aa1d499fee9afebe, type: 3}
+  bossShopRoomPrefab: {fileID: 4137628223530444123, guid: ed0cb88ee9a646c4aa1d499fee9afebe, type: 3}
