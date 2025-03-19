@@ -27,18 +27,44 @@ public class Upgrade : MonoBehaviour
     {
         if (isInFocus && Input.GetKeyDown(KeyCode.E))
         {
-            //PickUpUpgrade();
+            PickUpUpgrade();
         }
     }
-    /*
+    
     private void PickUpUpgrade()
     {
-        HunterStats hunter = FindFirstObjectByType<HunterStats>(); // Assuming there's only one Hunter in the scene
-        if (hunter != null)
+        player_movement movement = FindFirstObjectOfType<player_movement>();
+        DamageBow bow = FindObjectOfType<DamageBow>();
+
+        if (movement != null && bow != null)
         {
-            hunter.ApplyUpgrade(upgradeData);
+            switch (upgradeData.upgradeType)
+            {
+                case UpgradeType.Damage:
+                    bow.damage *= (1 + upgradeData.percentageIncrease);
+                    break;
+                case UpgradeType.Health:
+                    bow.health *= (1 + upgradeData.percentageIncrease);
+                    break;
+                case UpgradeType.HealthRegen:
+                    bow.healthRegen *= (1 + upgradeData.percentageIncrease);
+                    break;
+                case UpgradeType.DrawTime:
+                    bow.drawTime *= (1 - upgradeData.percentageIncrease); // Reduce draw time
+                    break;
+                case UpgradeType.Knockback:
+                    bow.knockback *= (1 + upgradeData.percentageIncrease);
+                    break;
+                case UpgradeType.ArrowSpeed:
+                    bow.arrowSpeed *= (1 + upgradeData.percentageIncrease);
+                    break;
+                case UpgradeType.MoveSpeed:
+                    movement.moveSpeed *= (1 + upgradeData.percentageIncrease);
+                    break;
+            }
         }
+
         Destroy(gameObject);
     }
-    */
+    
 }
