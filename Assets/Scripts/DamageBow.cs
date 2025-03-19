@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class DamageBow : MonoBehaviour
 {
-    [SerializeField] float Damage = 10f;
+    [SerializeField] public float Damage = 10f;
     public float BulletRange = 50f;
     [SerializeField] Camera playerCamera;
     public Transform bulletSpawnPoint;

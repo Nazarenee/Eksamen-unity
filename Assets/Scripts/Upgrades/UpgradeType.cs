@@ -5,5 +5,6 @@ public enum UpgradeType
     HealthRegen,
     DrawTime, // This will reduce draw time instead of increasing it
     Knockback,
-    ArrowSpeed
+    ArrowSpeed,
+    MoveSpeed
 }
