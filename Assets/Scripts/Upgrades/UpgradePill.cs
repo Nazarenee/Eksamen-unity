@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Upgrade : MonoBehaviour
@@ -33,33 +34,33 @@ public class Upgrade : MonoBehaviour
     
     private void PickUpUpgrade()
     {
-        player_movement movement = FindFirstObjectOfType<player_movement>();
-        DamageBow bow = FindObjectOfType<DamageBow>();
+        
+        GameObject hunter = GameObject.FindGameObjectWithTag("Hunter");
+        GameObject warrior = GameObject.FindGameObjectWithTag("Warrior");
+        GameObject mage = GameObject.FindGameObjectWithTag("Mage");
+        
+        GameObject player = hunter;
+        
+        DamageBow bow = player.GetComponentInChildren<DamageBow>();
+        PlayerMovement movement = player.GetComponent<PlayerMovement>();
+        Bow bowSpeed = player.GetComponent<Bow>();
 
-        if (movement != null && bow != null)
+        if (bow != null)
         {
             switch (upgradeData.upgradeType)
             {
                 case UpgradeType.Damage:
-                    bow.damage *= (1 + upgradeData.percentageIncrease);
-                    break;
-                case UpgradeType.Health:
-                    bow.health *= (1 + upgradeData.percentageIncrease);
-                    break;
-                case UpgradeType.HealthRegen:
-                    bow.healthRegen *= (1 + upgradeData.percentageIncrease);
+                    bow.Damage *= (1 + upgradeData.percentageIncrease);
                     break;
                 case UpgradeType.DrawTime:
-                    bow.drawTime *= (1 - upgradeData.percentageIncrease); // Reduce draw time
-                    break;
-                case UpgradeType.Knockback:
-                    bow.knockback *= (1 + upgradeData.percentageIncrease);
+                    bowSpeed.FireCooldown *= (1 - (upgradeData.percentageIncrease/4)); 
                     break;
                 case UpgradeType.ArrowSpeed:
-                    bow.arrowSpeed *= (1 + upgradeData.percentageIncrease);
+                    bow.bulletSpeed *= (1 + upgradeData.percentageIncrease);
                     break;
                 case UpgradeType.MoveSpeed:
-                    movement.moveSpeed *= (1 + upgradeData.percentageIncrease);
+                    movement.walkSpeed *= (1 + upgradeData.percentageIncrease);
+                    movement.rotationSpeed *= (1 + upgradeData.percentageIncrease);
                     break;
             }
         }
