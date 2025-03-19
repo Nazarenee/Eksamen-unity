@@ -14,7 +14,6 @@ public class PlayerMovement : MonoBehaviour
     public AudioClip bowDrawClip; 
     public AudioClip bowReleaseClip; 
 
-
     public Animator playerAnimator;
     public Rigidbody playerRigidbody;
     public float walkSpeed = 5f, walkBackwardSpeed = 2f, defaultWalkSpeed = 5f, rotationSpeed = 300f; 
@@ -24,15 +23,12 @@ public class PlayerMovement : MonoBehaviour
     {
         controls = new PlayerControls();
 
-        // Bind input actions for movement
         controls.Player.Movement.performed += ctx => moveInput = ctx.ReadValue<Vector2>();
         controls.Player.Movement.canceled += ctx => moveInput = Vector2.zero;
 
-        // Bind sprint action (Left Shift)
         controls.Player.Sprint.performed += ctx => isSprinting = true;
         controls.Player.Sprint.canceled += ctx => isSprinting = false;
 
-        // Bind attack action (Left Mouse Button)
         controls.Player.Attack.performed += ctx => Attack(); 
     }
 
@@ -48,7 +44,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-      
         if (isAttacking)
         {
             playerRigidbody.linearVelocity = Vector3.zero; 
@@ -56,21 +51,20 @@ public class PlayerMovement : MonoBehaviour
         }
 
         Vector3 forward = playerTransform.forward;
-        forward.y = 0; 
+        forward.y = 0;
 
         Vector3 right = playerTransform.right;
-        right.y = 0; 
+        right.y = 0;
 
         Vector3 movement = Vector3.zero;
-
         float currentSpeed = isSprinting ? walkSpeed * 2f : walkSpeed;
 
-        if (moveInput.y != 0)
+        if (moveInput.y != 0)  // Forward or backward
         {
             movement += forward * moveInput.y * currentSpeed;
         }
 
-        if (moveInput.x != 0)
+        if (moveInput.x != 0)  // Rotate
         {
             playerTransform.Rotate(0, moveInput.x * rotationSpeed * Time.deltaTime, 0);
         }
@@ -78,49 +72,42 @@ public class PlayerMovement : MonoBehaviour
         playerRigidbody.linearVelocity = new Vector3(movement.x, playerRigidbody.linearVelocity.y, movement.z);
     }
 
+
     private void Update()
     {
-        if (isAttacking) return;
-
-        if (moveInput.y < 0)
+        if (isAttacking)
         {
-            playerAnimator.SetTrigger("walkback");
-            playerAnimator.ResetTrigger("idle");
-        }
-        else if (moveInput.y > 0)
-        {
-            playerAnimator.SetTrigger("walk");
-            playerAnimator.ResetTrigger("idle");
-        }
-        else
-        {
-            playerAnimator.ResetTrigger("walk");
-            playerAnimator.ResetTrigger("walkback");
-            playerAnimator.SetTrigger("idle");
+            playerAnimator.SetFloat("Speed", 0f);  
+            return;
         }
 
-        if (isSprinting)
+        float targetSpeed = 0f;
+
+        if (moveInput.y > 0) 
         {
-            playerAnimator.SetTrigger("run");
-            playerAnimator.ResetTrigger("walk");
-            playerAnimator.ResetTrigger("walkback");
-            playerAnimator.ResetTrigger("idle");
+            if (isSprinting)
+                targetSpeed = 0.666f;
+            else
+                targetSpeed = 0.5f; 
         }
-        else if (!isSprinting && moveInput.y > 0)
+        else if (moveInput.y < 0)  
         {
-            playerAnimator.SetTrigger("walk");
-            playerAnimator.ResetTrigger("run");
-            playerAnimator.ResetTrigger("walkback");
-            playerAnimator.ResetTrigger("idle");
+            targetSpeed = 1f; 
+        }
+
+        if (!isAttacking) 
+        {
+            playerAnimator.SetFloat("Speed", targetSpeed);
         }
     }
+
 
     private void Attack()
     {
         if (isAttacking) return;
 
         isAttacking = true;
-        Vector2 tempMoveInput = moveInput; 
+        Vector2 tempMoveInput = moveInput;
         moveInput = Vector2.zero; 
         playerRigidbody.linearVelocity = Vector3.zero;
         
@@ -142,11 +129,11 @@ public class PlayerMovement : MonoBehaviour
         {
             playerAnimator.SetTrigger("magic");
         }
-        StartCoroutine(PlayBowReleaseSound());
 
+        StartCoroutine(PlayBowReleaseSound());
         StartCoroutine(ResetAttack(tempMoveInput));
     }
-    
+
     IEnumerator PlayBowReleaseSound()
     {
         yield return new WaitForSeconds(0.5f); 
@@ -155,14 +142,17 @@ public class PlayerMovement : MonoBehaviour
 
     IEnumerator ResetAttack(Vector2 savedMoveInput)
     {
-        yield return new WaitForSeconds(1f); 
-        isAttacking = false;
+        yield return new WaitForSeconds(1f);  
 
+        isAttacking = false;
         playerAnimator.SetTrigger("idle");
+
+        // Reset attack-related triggers
         playerAnimator.ResetTrigger("melee");
         playerAnimator.ResetTrigger("arrow");
         playerAnimator.ResetTrigger("magic");
 
-        moveInput = savedMoveInput; 
+        playerAnimator.SetFloat("Speed", 0f);  
+    
     }
 }
