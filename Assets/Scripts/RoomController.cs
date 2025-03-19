@@ -70,6 +70,7 @@ public class RoomController : MonoBehaviour
     private void SpawnShopRoom()
     {
         shop.SetActive(true);
+        SpawnUpgrades();
         currentRoom = shop;
         Transform spawnPoint = shop.transform.Find("SpawnPoint");
         player.transform.position = spawnPoint.position;
@@ -128,5 +129,10 @@ public class RoomController : MonoBehaviour
             SpawnCombatRoom();
             bossShopRoom.SetActive(false);
         }
+    }
+    
+    private void SpawnUpgrades()
+    {
+        
     }
 }
