@@ -48,6 +48,10 @@ public class DamageBow : MonoBehaviour
             {
                 enemy.TakeDamage(Damage, hit.point);
             }
+            else  if (hit.collider.gameObject.TryGetComponent(out EnemyBossScript enemy1))
+            {
+                enemy1.TakeDamage(Damage, hit.point);
+            }
         }
         else
         {

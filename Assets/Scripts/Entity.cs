@@ -24,6 +24,7 @@ namespace DefaultNamespace
                 Die();
             }
         }
+        
 
         void Die()
         {
