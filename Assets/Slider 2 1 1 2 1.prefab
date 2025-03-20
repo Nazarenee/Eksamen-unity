@@ -121,6 +121,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7318831687478776962}
   - component: {fileID: 7742552461166888999}
+  - component: {fileID: 8756267495266972585}
   m_Layer: 5
   m_Name: Slider 2 1 1 2 1
   m_TagString: Untagged
@@ -135,7 +136,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6666453359888288852}
-  m_LocalRotation: {x: 0.00015418224, y: 0.9994673, z: 0.0087264115, w: 0.031446464}
+  m_LocalRotation: {x: 0.00015315061, y: 0.99946725, z: 0.008726985, w: 0.031449508}
   m_LocalPosition: {x: 0, y: 0, z: -3.6685522}
   m_LocalScale: {x: 0.1, y: 0.4, z: 1}
   m_ConstrainProportionsScale: 0
@@ -200,6 +201,29 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!223 &8756267495266972585
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6666453359888288852}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_VertexColorAlwaysGammaSpace: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_UpdateRectTransformForStandalone: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
 --- !u!1 &7377313729928842250
 GameObject:
   m_ObjectHideFlags: 0
