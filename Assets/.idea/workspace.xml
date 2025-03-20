@@ -6,10 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="b8325b5a-ae36-4851-8f37-b94a3f62e2d3" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Scenes/Gamemenuvirker.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Scenes/Gamemenuvirker.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Scenes/Scene1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Scenes/Scene1.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Scripts/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Scripts/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/../ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LevelLoader.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LevelLoader.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Scripts/Portal.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Scripts/Portal.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/../UserSettings/EditorUserSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -35,6 +33,8 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/LevelLoader.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Script/GameMenuScript.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Scripts/Portal.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Scripts/RoomController.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/scrp.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
@@ -67,7 +67,7 @@
       <option name="presentableId" value="Default" />
       <updated>1742293398725</updated>
       <workItem from="1742293399862" duration="724000" />
-      <workItem from="1742507134660" duration="1204000" />
+      <workItem from="1742507134660" duration="2236000" />
     </task>
     <servers />
   </component>

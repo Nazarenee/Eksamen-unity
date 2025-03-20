@@ -2,26 +2,30 @@ using UnityEngine;
 
 public class Portal : MonoBehaviour
 {
-    private RoomController roomController; // Reference to RoomController
+    private RoomController roomController;
+    private LevelLoader levelLoader;
 
     void Start()
     {
-        // Find the RoomController in the scene
         roomController = FindAnyObjectByType(typeof(RoomController)) as RoomController;
+        levelLoader = FindAnyObjectByType(typeof(LevelLoader)) as LevelLoader;
 
         if (roomController == null)
         {
             Debug.LogError("RoomController not found in the scene!");
         }
+        if (levelLoader == null)
+        {
+            Debug.LogError("LevelLoader not found in the scene!");
+        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        // Check if the object entering the portal is the player
-        if (other.CompareTag("Hunter"))
+        if (other.CompareTag("Hunter")) 
         {
             Debug.Log("Player entered the portal!");
-            roomController.NextRoom(); // Call the NextRoom() method
+            levelLoader.LoadNextRoom(); // Calls the LevelLoader's transition method
         }
     }
 }

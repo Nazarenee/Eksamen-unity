@@ -1,31 +1,38 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using System.Collections;
 
 public class LevelLoader : MonoBehaviour
 {
-    public Animator transition; // Assign this in the Inspector
-    public float transitionTime = 1f;
+    public Animator transition; // Assign in the Inspector
+    public float transitionTime = 1f; 
+    private RoomController roomController;
 
-    void Update()
+    void Start()
     {
-        if (Input.GetMouseButtonDown(0))
+        roomController = FindAnyObjectByType(typeof(RoomController)) as RoomController;
+        if (roomController == null)
         {
-            LoadNextLevel();
+            Debug.LogError("RoomController not found in the scene!");
         }
     }
 
-    public void LoadNextLevel()
+    public void LoadNextRoom()
     {
-        StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
+        StartCoroutine(TransitionRoom());
     }
 
-    IEnumerator LoadLevel(int levelIndex)
+    IEnumerator TransitionRoom()
     {
-        transition.SetTrigger("Start"); // Make sure this trigger exists in your Animator
+        Debug.Log("Fading out..."); 
+        transition.SetTrigger("Start"); // Trigger fade-out
 
-        yield return new WaitForSeconds(transitionTime); // ✅ Corrected: "WaitForSeconds"
+        yield return new WaitForSeconds(transitionTime); // Wait for fade-out to complete
 
-        SceneManager.LoadScene(levelIndex);
+        roomController.NextRoom(); // Now switch rooms
+
+        yield return new WaitForSeconds(0.1f); // Small delay for smoothness
+
+        Debug.Log("Fading in...");
+        transition.SetTrigger("End"); // Trigger fade-in
     }
 }
