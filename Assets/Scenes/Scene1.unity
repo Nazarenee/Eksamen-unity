@@ -154,7 +154,7 @@ MonoBehaviour:
   maxHealth: 100
   healthSlider: {fileID: 2106289831}
   healthFill: {fileID: 534810015}
-  healthBarOffset: {x: 0, y: 2, z: 0}
+  healthBarOffset: {x: 0, y: 3, z: 0}
   warningText: {fileID: 739250906}
 --- !u!136 &436980020
 CapsuleCollider:
@@ -515,7 +515,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: TRIGGER
+  m_text: Destroy Weakspots
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
