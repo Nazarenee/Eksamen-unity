@@ -1,20 +1,19 @@
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;  // ✅ Make sure to use TextMeshPro
-using System.Collections;
+using TMPro; // Required for TextMeshPro
 
 public class EnemyBossScript : MonoBehaviour
 {
     [SerializeField] private float maxHealth = 100f;
     private float currentHealth;
 
-    [SerializeField] private Slider healthSlider;
-    [SerializeField] private Image healthFill;
-    [SerializeField] private Vector3 healthBarOffset = new Vector3(0, 2f, 0);
+    [SerializeField] private Slider healthSlider; // Assign in Inspector
+    [SerializeField] private Image healthFill;   // Assign the Fill Image of the Slider in Inspector
+    [SerializeField] private Vector3 healthBarOffset = new Vector3(0, 5f, 0); // Adjust Y for height above the boss
 
-    [SerializeField] private TextMeshProUGUI warningText; // ✅ Using TMP
+    private bool isVulnerable = false; // Boss starts as invulnerable
 
-    private bool isVulnerable = false;
+    [SerializeField] private TMP_Text warningText; // Assign in Inspector
 
     void Start()
     {
@@ -22,37 +21,36 @@ public class EnemyBossScript : MonoBehaviour
 
         if (healthSlider == null)
         {
-            Debug.LogError("HealthSlider is not assigned!");
+            Debug.LogError("HealthSlider is not assigned! Drag your Slider into the Inspector.");
             return;
         }
+
+        if (warningText == null)
+        {
+            Debug.LogError("WarningText (TMP) is not assigned! Drag your TextMeshPro object into the Inspector.");
+            return;
+        }
+
+        // Hide warning text at the start
+        warningText.gameObject.SetActive(false);
 
         healthSlider.maxValue = maxHealth;
         healthSlider.value = maxHealth;
         UpdateHealthBarColor();
-
-        // ✅ Make sure TMP text is active but invisible
-        if (warningText != null)
-        {
-            warningText.gameObject.SetActive(true);
-            warningText.text = ""; // Hide text
-        }
-        else
-        {
-            Debug.LogError("WarningText (TMP) is not assigned!");
-        }
     }
 
     void Update()
     {
         if (healthSlider != null)
         {
+            // Ensure the health bar follows the boss and stays above it
             healthSlider.transform.position = transform.position + healthBarOffset;
         }
     }
 
     public void MakeVulnerable()
     {
-        isVulnerable = true;
+        isVulnerable = true; // Now the boss can take damage
         Debug.Log("Boss is now vulnerable!");
     }
 
@@ -61,7 +59,7 @@ public class EnemyBossScript : MonoBehaviour
         if (!isVulnerable)
         {
             Debug.Log("Boss is invulnerable! Destroy the weak spot first.");
-            ShowWarning(); // ✅ Show text when hit while invulnerable
+            ShowWarning(); // Show the warning text
             return;
         }
 
@@ -72,7 +70,7 @@ public class EnemyBossScript : MonoBehaviour
         if (healthSlider != null)
         {
             healthSlider.value = currentHealth;
-            UpdateHealthBarColor();
+            UpdateHealthBarColor(); // ✅ Change color based on health
         }
 
         if (currentHealth <= 0)
@@ -92,50 +90,50 @@ public class EnemyBossScript : MonoBehaviour
 
         float healthPercent = currentHealth / maxHealth;
 
-        if (healthPercent > 0.5f)      
+        if (healthPercent > 0.5f)      // Green (Above 50%)
             healthFill.color = Color.green;
-        else if (healthPercent > 0.25f) 
+        else if (healthPercent > 0.25f) // Yellow (Between 25% and 50%)
             healthFill.color = Color.yellow;
-        else                           
+        else                           // Red (Below 25%)
             healthFill.color = Color.red;
     }
 
     void Die()
     {
         Debug.Log("Boss died!");
+
         if (healthSlider != null)
         {
-            Destroy(healthSlider.gameObject);
+            Destroy(healthSlider.gameObject); // Destroy health bar if boss dies
         }
-        Destroy(gameObject);
+
+        Destroy(gameObject); // Destroy the boss object
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Bullet")) 
+        if (other.CompareTag("Bullet")) // Ensure bullets hit the boss
         {
             TakeDamage(10f, other.transform.position);
-            Destroy(other.gameObject);
+            Destroy(other.gameObject); // Destroy the bullet
         }
     }
 
-    // ✅ Show warning text for 2 seconds
     private void ShowWarning()
     {
         if (warningText != null)
         {
-            StopCoroutine(HideWarning()); // Reset timer if hit again
-            warningText.text = "Destroy the weakspot first.";
-            StartCoroutine(HideWarning());
+            warningText.gameObject.SetActive(true); // Show the warning
+            CancelInvoke(nameof(HideWarning)); // Cancel any previous hide call
+            Invoke(nameof(HideWarning), 2f); // Hide after 2 seconds
         }
     }
 
-    private IEnumerator HideWarning()
+    private void HideWarning()
     {
-        yield return new WaitForSeconds(2f);
         if (warningText != null)
         {
-            warningText.text = ""; // Hide text after delay
+            warningText.gameObject.SetActive(false); // Hide the warning
         }
     }
 }

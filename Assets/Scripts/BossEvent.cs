@@ -15,7 +15,8 @@ public class BossEvent : MonoBehaviour
         Destroy(gameObject); // Destroy the weak spot
     }
 
-    private void OnTriggerEnter(Collider other)
+   private void OnTriggerEnter(Collider other)
+    
     {
         if (other.CompareTag("Bullet")) // Make sure the bullet has the correct tag
         {
@@ -23,4 +24,5 @@ public class BossEvent : MonoBehaviour
             Destroy(other.gameObject); // Destroy the bullet
         }
     }
+    
 }
