@@ -52,5 +52,6 @@ MonoBehaviour:
   - {fileID: 8224340844097246743, guid: 62388fafff7c70b4e804d1559abfc37e, type: 3}
   lobbyRoomPrefab: {fileID: 4137628223530444123, guid: 5cc46c14f8faa6d42bf11b946a90d5d1, type: 3}
   shopRoomPrefab: {fileID: 4137628223530444123, guid: ed0cb88ee9a646c4aa1d499fee9afebe, type: 3}
+  upgradeSpawner: {fileID: 0}
   bossRoomPrefab: {fileID: 4137628223530444123, guid: ed0cb88ee9a646c4aa1d499fee9afebe, type: 3}
   bossShopRoomPrefab: {fileID: 4137628223530444123, guid: ed0cb88ee9a646c4aa1d499fee9afebe, type: 3}

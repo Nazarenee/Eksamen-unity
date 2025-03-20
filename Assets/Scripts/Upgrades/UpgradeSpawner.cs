@@ -9,7 +9,7 @@ public class UpgradeSpawner : MonoBehaviour
     private Vector3 upgradeSpawn1 = new Vector3(-5, 1.5f, -4);
     private Vector3 upgradeSpawn2 = new Vector3(-5, 1.5f, 4);
 
-    private void Start()
+    public void SpawnUpgrades()
     {
         SpawnUpgrade(upgradeSpawn1);
         SpawnUpgrade(upgradeSpawn2);
@@ -30,6 +30,8 @@ public class UpgradeSpawner : MonoBehaviour
         newUpgrade.percentageIncrease = percentageIncrease;
 
         GameObject upgradeInstance = Instantiate(upgradePrefab, position, Quaternion.identity);
+        Debug.Log($"Spawned Upgrade: {upgradeInstance.name}, Active: {upgradeInstance.activeSelf}");
+        
         UpgradePill upgradeScript = upgradeInstance.GetComponent<UpgradePill>();
         upgradeScript.Initialize(newUpgrade, GetMaterialForRarity(rolledRarity));
     }
