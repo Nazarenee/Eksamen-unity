@@ -7,40 +7,23 @@ namespace DefaultNamespace
     {
         [SerializeField] public float maxHealth;
         public float currentHealth;
-        
+
         // Health Bar variables
         [SerializeField] private GameObject healthBarPrefab;
         private GameObject healthBarInstance;
         private Slider healthSlider;
         [SerializeField] private Vector3 healthBarOffset = new Vector3(0, 1.5f, 0); // Adjust based on your character height
-        
+
         void Start()
         {
             currentHealth = maxHealth; // Enemy starts with full health
             CreateHealthBar();
         }
-        
+
         void CreateHealthBar()
         {
-            // Check if world space canvas exists, create if not
-            Canvas worldCanvas;
-            GameObject canvasObj = GameObject.Find("WorldSpaceCanvas");
-
-            if (canvasObj == null)
-            {
-                canvasObj = new GameObject("WorldSpaceCanvas");
-                worldCanvas = canvasObj.AddComponent<Canvas>();
-                worldCanvas.renderMode = RenderMode.WorldSpace;
-                canvasObj.AddComponent<CanvasScaler>();
-                canvasObj.AddComponent<GraphicRaycaster>();
-            }
-            else
-            {
-                worldCanvas = canvasObj.GetComponent<Canvas>();
-            }
-
-            // Instantiate health bar
-            healthBarInstance = Instantiate(healthBarPrefab, worldCanvas.transform);
+            // Instantiate the health bar and assign it to the correct parent
+            healthBarInstance = Instantiate(healthBarPrefab, transform);
             healthSlider = healthBarInstance.GetComponent<Slider>();
 
             if (healthSlider == null)
@@ -49,50 +32,56 @@ namespace DefaultNamespace
                 return;
             }
 
-            // Set slider values
+            // Set the min and max values correctly (Ensure maxHealth is a valid number)
             healthSlider.minValue = 0;
             healthSlider.maxValue = maxHealth;
-            healthSlider.value = maxHealth; // Force to max value
 
-            // Force UI refresh
-            healthSlider.wholeNumbers = false;  // Ensure smooth scaling
-            healthSlider.value = maxHealth;     // Set again to update UI
+            // Set the initial health value (shouldn't be 0, unless the enemy starts dead)
+            healthSlider.value = currentHealth;
 
-            // Get fill image
+            // Ensure slider is not in whole number mode (for smooth transitions)
+            healthSlider.wholeNumbers = false;
+
+            // Debug log to check values
+            // Set fill image color (green initially)
             Image fillImage = healthSlider.fillRect.GetComponent<Image>();
             if (fillImage != null)
             {
                 fillImage.color = Color.green;
             }
+
+            // Ensure the health bar is positioned above the enemy
+            healthBarInstance.transform.localPosition = healthBarOffset;
         }
 
-        
+
+
         void Update()
         {
             if (healthBarInstance != null)
             {
                 // Position health bar above enemy
                 healthBarInstance.transform.position = transform.position + healthBarOffset;
-                
-                // Make health bar face the camera
+
+                // Make health bar face the camera (to always be visible from the player's perspective)
                 healthBarInstance.transform.LookAt(Camera.main.transform);
                 healthBarInstance.transform.Rotate(0, 180, 0);
-                
+
                 // Update health bar value (for smooth transitions)
                 healthSlider.value = currentHealth;
-                
+
                 // Update color based on health percentage
                 UpdateHealthBarColor();
             }
         }
-        
+
         private void UpdateHealthBarColor()
         {
             Image fillImage = healthSlider.fillRect.GetComponent<Image>();
             if (fillImage != null)
             {
                 float healthPercentage = currentHealth / maxHealth;
-                
+
                 if (healthPercentage > 0.6f)
                 {
                     fillImage.color = Color.green;
@@ -107,13 +96,13 @@ namespace DefaultNamespace
                 }
             }
         }
-        
+
         public void TakeDamage(float damage, Vector3 hitPosition)
         {
             Debug.Log("Damage taken: " + damage + " | Before damage: " + currentHealth);
             currentHealth -= damage;
             Debug.Log("After damage: " + currentHealth);
-    
+
             // Update health bar value
             if (healthSlider != null)
             {
@@ -124,24 +113,24 @@ namespace DefaultNamespace
             {
                 Debug.LogError("healthSlider is null in TakeDamage!");
             }
-    
+
             if (currentHealth <= 0)
             {
                 Debug.Log("Calling Die() for: " + gameObject.name);
                 Die();
             }
         }
-        
+
         void Die()
         {
             Debug.Log("Enemy died!");
-            
+
             // Destroy health bar when enemy dies
             if (healthBarInstance != null)
             {
                 Destroy(healthBarInstance);
             }
-            
+
             Destroy(gameObject);
         }
     }
