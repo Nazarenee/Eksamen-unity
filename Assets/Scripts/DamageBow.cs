@@ -30,15 +30,14 @@ public class DamageBow : MonoBehaviour
         if (playerCamera == null) return;
 
         // Get mouse movement
-        float mouseX = Input.GetAxis("Mouse X") * sensitivity; // Left/right rotation (Y-axis)
-        float mouseY = Input.GetAxis("Mouse Y") * sensitivity; // Up/down rotation (X-axis)
+        float mouseX = Input.GetAxis("Mouse X") * sensitivity; 
+        float mouseY = Input.GetAxis("Mouse Y") * sensitivity;
 
-        // Rotate player (Y-axis) - Turns the character left/right
         transform.Rotate(Vector3.up * mouseX);
 
-        // Rotate camera (X-axis) - Moves camera up/down
+        
         verticalRotation -= mouseY;
-        verticalRotation = Mathf.Clamp(verticalRotation, -80f, 80f); // Prevent looking too far up/down
+        verticalRotation = Mathf.Clamp(verticalRotation, -80f, 80f); 
         playerCamera.transform.localRotation = Quaternion.Euler(verticalRotation, 0, 0);
     }
 
@@ -50,7 +49,7 @@ public class DamageBow : MonoBehaviour
             return;
         }
 
-        Ray ray = playerCamera.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2)); // Center of screen
+        Ray ray = playerCamera.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2)); 
         RaycastHit hit;
 
         if (Physics.Raycast(ray, out hit, BulletRange))
@@ -64,11 +63,11 @@ public class DamageBow : MonoBehaviour
             arrow.transform.rotation = Quaternion.Euler(90, arrow.transform.rotation.eulerAngles.y, arrow.transform.rotation.eulerAngles.z);
 
             Rigidbody rb = arrow.GetComponent<Rigidbody>();
-            Debug.Log("Raycast hit: " + hit.collider.name); // Log the hit
+            Debug.Log("Raycast hit: " + hit.collider.name);
 
             if (rb != null)
             {
-                rb.linearVelocity = direction * bulletSpeed; // Fixed velocity issue
+                rb.linearVelocity = direction * bulletSpeed;
             }
             
             else

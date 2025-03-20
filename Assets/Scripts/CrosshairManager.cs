@@ -2,11 +2,11 @@ using UnityEngine;
 
 public class CrosshairManager : MonoBehaviour
 {
-    [SerializeField] private RectTransform crosshair; // Assign the crosshair UI element in Inspector
+    [SerializeField] private RectTransform crosshair; 
 
     void Start()
     {
-        Cursor.visible = false; // Hide the default cursor
+        Cursor.visible = false; 
         Cursor.lockState = CursorLockMode.Confined; // Keep cursor inside the game window
     }
 
