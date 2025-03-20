@@ -4,6 +4,8 @@ using UnityEngine;
 public class UpgradePill : MonoBehaviour
 {
     private UpgradeData upgradeData;
+    private Transform player;
+    public float tooltipRange = 3f;
     private bool isLookingAtUpgrade = false;
 
     public void Initialize(UpgradeData data, Material rarityMaterial)
@@ -14,10 +16,35 @@ public class UpgradePill : MonoBehaviour
 
     private void Update()
     {
-        if (isLookingAtUpgrade && Input.GetKeyDown(KeyCode.E))
         {
-            PickUpUpgrade();
+            if (player == null) return;
+
+            float distance = Vector3.Distance(player.position, transform.position);
+            if(isLookingAtUpgrade && Input.GetKeyDown(KeyCode.E))
+            {
+                PickUpUpgrade();
+            }
+        
+            if (distance <= tooltipRange)
+            {
+                string tooltipMessage = $"{upgradeData.upgradeType}\nRarity: {upgradeData.rarity}\nIncrease: {upgradeData.percentageIncrease * 100}%";
+                UpgradeTooltip.Instance.ShowTooltip(tooltipMessage, transform);
+            }
+            else
+            {
+                UpgradeTooltip.Instance.HideTooltip();
+            }
         }
+    }
+
+    private void OnMouseOver()
+    {
+        isLookingAtUpgrade = true;
+    }
+    
+    private void OnMouseExit()
+    {
+        isLookingAtUpgrade = false;
     }
 
     private void PickUpUpgrade()
@@ -49,19 +76,5 @@ public class UpgradePill : MonoBehaviour
         Destroy(gameObject);
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Hunter"))
-        {
-            isLookingAtUpgrade = true;
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Hunter"))
-        {
-            isLookingAtUpgrade = false;
-        }
-    }
+    
 }

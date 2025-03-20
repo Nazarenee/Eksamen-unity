@@ -16,6 +16,7 @@ public class RoomController : MonoBehaviour
     
     public GameObject shopRoomPrefab;
     private GameObject shop;
+    public UpgradeSpawner upgradeSpawner;
     
     public GameObject bossRoomPrefab;
     private GameObject bossRoom;
@@ -70,7 +71,9 @@ public class RoomController : MonoBehaviour
     private void SpawnShopRoom()
     {
         shop.SetActive(true);
-        SpawnUpgrades();
+        upgradeSpawner = shop.GetComponentInChildren<UpgradeSpawner>();
+        Debug.Log("Spawning Upgrades");
+        upgradeSpawner.SpawnUpgrades();
         currentRoom = shop;
         Transform spawnPoint = shop.transform.Find("SpawnPoint");
         player.transform.position = spawnPoint.position;
@@ -131,8 +134,5 @@ public class RoomController : MonoBehaviour
         }
     }
     
-    private void SpawnUpgrades()
-    {
-        
-    }
+    
 }
