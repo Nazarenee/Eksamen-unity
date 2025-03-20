@@ -30,7 +30,6 @@ public class UpgradeSpawner : MonoBehaviour
         newUpgrade.percentageIncrease = percentageIncrease;
 
         GameObject upgradeInstance = Instantiate(upgradePrefab, position, Quaternion.identity);
-        Debug.Log($"Spawned Upgrade: {upgradeInstance.name}, Active: {upgradeInstance.activeSelf}");
         
         UpgradePill upgradeScript = upgradeInstance.GetComponent<UpgradePill>();
         upgradeScript.Initialize(newUpgrade, GetMaterialForRarity(rolledRarity));

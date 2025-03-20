@@ -7,32 +7,37 @@ public class UpgradePill : MonoBehaviour
     private Transform player;
     public float tooltipRange = 3f;
     private bool isLookingAtUpgrade = false;
+    private UpgradeTooltip tooltipInstance;
+    public GameObject tooltipPrefab;
 
     public void Initialize(UpgradeData data, Material rarityMaterial)
     {
         upgradeData = data;
         GetComponent<Renderer>().material = rarityMaterial;
+        player = GameObject.FindGameObjectWithTag("Hunter").transform;
+        
+        GameObject tooltipObject = Instantiate(tooltipPrefab, transform.position, Quaternion.identity);
+        tooltipInstance = tooltipObject.GetComponent<UpgradeTooltip>();
+        tooltipInstance.gameObject.SetActive(false);
     }
 
     private void Update()
     {
         {
-            if (player == null) return;
-
             float distance = Vector3.Distance(player.position, transform.position);
-            if(isLookingAtUpgrade && Input.GetKeyDown(KeyCode.E))
-            {
-                PickUpUpgrade();
-            }
-        
+            
             if (distance <= tooltipRange)
             {
                 string tooltipMessage = $"{upgradeData.upgradeType}\nRarity: {upgradeData.rarity}\nIncrease: {upgradeData.percentageIncrease * 100}%";
-                UpgradeTooltip.Instance.ShowTooltip(tooltipMessage, transform);
+                tooltipInstance.ShowTooltip(tooltipMessage, transform);
             }
-            else
+            else if (tooltipInstance.gameObject.activeSelf) 
             {
-                UpgradeTooltip.Instance.HideTooltip();
+                tooltipInstance.HideTooltip();
+            }
+            if(isLookingAtUpgrade && Input.GetKeyDown(KeyCode.E))
+            {
+                PickUpUpgrade();
             }
         }
     }
@@ -72,7 +77,7 @@ public class UpgradePill : MonoBehaviour
                     break;
             }
         }
-
+        Destroy(tooltipInstance.gameObject);
         Destroy(gameObject);
     }
 

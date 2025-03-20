@@ -16,7 +16,7 @@ public class RoomController : MonoBehaviour
     
     public GameObject shopRoomPrefab;
     private GameObject shop;
-    public UpgradeSpawner upgradeSpawner;
+    private UpgradeSpawner upgradeSpawner;
     
     public GameObject bossRoomPrefab;
     private GameObject bossRoom;
