@@ -63,12 +63,12 @@ public class PlayerMovement : MonoBehaviour
         {
             movement += forward * moveInput.y * currentSpeed;
         }
-
+/*
         if (moveInput.x != 0)  // Rotate
         {
             playerTransform.Rotate(0, moveInput.x * rotationSpeed * Time.deltaTime, 0);
         }
-
+*/
         playerRigidbody.linearVelocity = new Vector3(movement.x, playerRigidbody.linearVelocity.y, movement.z);
     }
 

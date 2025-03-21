@@ -31,7 +31,7 @@ public class UpgradePill : MonoBehaviour
         GetComponent<Renderer>().material = rarityMaterial;
         borderImage.color = rarityMaterial.color;
         
-        tooltipText.text = $"{data.upgradeType}\n+{data.percentageIncrease*100}%";
+        tooltipText.text = $"{data.rarity}\n+{data.upgradeType}\n+{data.percentageIncrease*100}%";
         if (data.upgradeType == UpgradeType.DrawTime)
         {
             tooltipText.text = $"{data.rarity}\n{data.upgradeType}\n-{data.percentageIncrease/4*100}%";
