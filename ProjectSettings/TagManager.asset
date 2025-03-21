@@ -13,6 +13,7 @@ TagManager:
   - BossRoom
   - BossShopRoom
   - Upgrade
+  - Wood
   layers:
   - Default
   - TransparentFX
