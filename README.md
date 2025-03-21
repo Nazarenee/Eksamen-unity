@@ -6,6 +6,8 @@ I spillet vælger man mellem tre karakterer: Hunter, Mage, Warrior.
 
 Målet er at blive så stærk som muligt ved hjælp af upgrades og ved at dræbe fjender, så man kan overleve boss-rummet.
 
+
+
 Controls
 
 W → Bevæg karakteren fremad
@@ -17,6 +19,9 @@ SHIFT → Sprint
 Musen → Kigge/bevæge sig fra side til side
 
 Venstre klik → Angribe
+
+
+
 
 Features
 
