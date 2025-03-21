@@ -37,8 +37,13 @@ Features
 
 ✅ Upgrade-kategorier:
 
-Legendary
+COMMON
 
-Blue
+RARE
 
-Green
+EPIC 
+
+HEROIC 
+
+LEGENDARY
+
