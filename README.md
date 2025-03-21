@@ -37,13 +37,13 @@ Features
 
 ✅ Upgrade-kategorier:
 
-COMMON
+- COMMON
 
-RARE
+- RARE
 
-EPIC 
+- EPIC 
 
-HEROIC 
+- HEROIC 
 
-LEGENDARY
+- LEGENDARY
 
