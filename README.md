@@ -1,17 +1,21 @@
-Vores spil er et roguelike 3rdperson shooter spil. 
-I spillet vælger man blandt 3 karakterer (Hunter, Mage, Warrior), også skal man vha upgrades og dræbe fjender, prøve at blive så stærk så man kan overleve vores boss room.
+Roguelike 3rd Person Shooter
+Om spillet
+Vores spil er et roguelike 3rd person shooter. I spillet vælger man mellem tre karakterer: Hunter, Mage, Warrior. Målet er at blive så stærk som muligt ved hjælp af upgrades og ved at dræbe fjender, så man kan overleve boss-rummet.
 
-COMMANDS: 
-"W" bevæger din karakter fremad
-"S" bevæger din karakter baglæns
-"SHIFT" får din karakter til at sprinte 
-Man bruger musen til at kigge/bevægse sig fra side til side
-Venstre click bruger du til at angribe 
+Controls
+W → Bevæg karakteren fremad
+S → Bevæg karakteren baglæns
+SHIFT → Sprint
+Musen → Kigge/bevæge sig fra side til side
+Venstre klik → Angribe
+Features
+✅ Main menu med valg
+✅ Karakter-selection screen
+✅ Random room generation
+✅ Portaler til næste rum (låses op, når alle mobs i et rum er dræbt)
+✅ Upgrade-rum (i portalen vælger du mellem to upgrades)
+✅ Upgrade-kategorier:
 
-FEATURES:
-Main menu med valg
-Karakter selection screen
-Random Room generation
-Når du har dræbt alle mobs i et givet rum, unlockes en portal
-I portal finder du et upgrade rum, hvor du kan vælge mellem 2 upgrades
-Hvert upgrade har en kategori (legendary, blue, green)
+Legendary
+Blue
+Green
