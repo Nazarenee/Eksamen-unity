@@ -5,7 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="deb58a20-e22b-43c3-a7af-e35dba21b40a" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../Resources/Prefabs/Rooms/CombatRooms/BossRoom.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/../Resources/Prefabs/Rooms/CombatRooms/BossRoom.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Scenes/Scene1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/../Scenes/Scene1.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/../../UserSettings/EditorUserSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../UserSettings/Layouts/default-6000.dwlt" beforeDir="false" afterPath="$PROJECT_DIR$/../../UserSettings/Layouts/default-6000.dwlt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,11 +31,11 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/BossEvent.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/DamageBow.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/BossEvent.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/DamageBow.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/EnemyHealth.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Entity.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/RoomController.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Entity.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/RoomController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/enemy_movement.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
@@ -67,6 +70,7 @@
       <workItem from="1742393724113" duration="4000" />
       <workItem from="1742393733594" duration="1427000" />
       <workItem from="1742473491476" duration="16556000" />
+      <workItem from="1742549992581" duration="69000" />
     </task>
     <task id="LOCAL-00001" summary="Opgraderet">
       <option name="closed" value="true" />
