@@ -1,63 +1,55 @@
 using System;
-using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class UpgradePill : MonoBehaviour
 {
     private UpgradeData upgradeData;
+    private Transform player;
+    public float tooltipRange = 3f;
     private bool isLookingAtUpgrade = false;
-    private Camera playerCamera;
-    private GameObject hunter;
-    private Canvas tooltipCanvas;
-    [SerializeField] private TextMeshProUGUI tooltipText;
-    [SerializeField] private Image borderImage;
-    [SerializeField] private float interactionDistance = 5f;
-
-    private void Start()
-    {
-        hunter = GameObject.FindGameObjectWithTag("Hunter");
-        tooltipCanvas = GetComponentInChildren<Canvas>(true);
-        playerCamera = hunter.GetComponentInChildren<Camera>();
-        if (playerCamera == null)
-        {
-            Debug.LogWarning("Camera not found on Hunter. Please ensure the camera is a child of the Hunter.");
-        }
-    }
+    private UpgradeTooltip tooltipInstance;
+    public GameObject tooltipPrefab;
 
     public void Initialize(UpgradeData data, Material rarityMaterial)
     {
         upgradeData = data;
         GetComponent<Renderer>().material = rarityMaterial;
-        borderImage.color = rarityMaterial.color;
+        player = GameObject.FindGameObjectWithTag("Hunter").transform;
         
-        tooltipText.text = $"{data.upgradeType}\n+{data.percentageIncrease*100}%";
-        if (data.upgradeType == UpgradeType.DrawTime)
-        {
-            tooltipText.text = $"{data.rarity}\n{data.upgradeType}\n-{data.percentageIncrease/4*100}%";
-        }
+        GameObject tooltipObject = Instantiate(tooltipPrefab, transform.position, Quaternion.identity);
+        tooltipInstance = tooltipObject.GetComponent<UpgradeTooltip>();
+        tooltipInstance.gameObject.SetActive(false);
     }
 
     private void Update()
     {
-        float distanceToPlayer = Vector3.Distance(hunter.transform.position, transform.position);
-        if (distanceToPlayer <= interactionDistance)
         {
-            isLookingAtUpgrade = true;
-            tooltipText.gameObject.SetActive(true);
-            tooltipCanvas.gameObject.SetActive(true);
+            float distance = Vector3.Distance(player.position, transform.position);
+            
+            if (distance <= tooltipRange)
+            {
+                string tooltipMessage = $"{upgradeData.upgradeType}\nRarity: {upgradeData.rarity}\nIncrease: {upgradeData.percentageIncrease * 100}%";
+                tooltipInstance.ShowTooltip(tooltipMessage, transform);
+            }
+            else if (tooltipInstance.gameObject.activeSelf) 
+            {
+                tooltipInstance.HideTooltip();
+            }
+            if(isLookingAtUpgrade && Input.GetKeyDown(KeyCode.E))
+            {
+                PickUpUpgrade();
+            }
         }
-        else
-        {
-            isLookingAtUpgrade = false;
-            tooltipText.gameObject.SetActive(false);
-            tooltipCanvas.gameObject.SetActive(false);
-        }
+    }
 
-        if (isLookingAtUpgrade && Input.GetKeyDown(KeyCode.E))
-        {
-            PickUpUpgrade();
-        }
+    private void OnMouseOver()
+    {
+        isLookingAtUpgrade = true;
+    }
+    
+    private void OnMouseExit()
+    {
+        isLookingAtUpgrade = false;
     }
 
     private void PickUpUpgrade()
@@ -85,20 +77,9 @@ public class UpgradePill : MonoBehaviour
                     break;
             }
         }
+        Destroy(tooltipInstance.gameObject);
         Destroy(gameObject);
-        DespawnUpgrades();
-        
     }
 
-    public void DespawnUpgrades()
-    {
-        //Find and destory all UpgradePill
-        GameObject[] upgrades = GameObject.FindGameObjectsWithTag("Upgrade");
-        foreach (var upgrade in upgrades)
-        {
-            Destroy(upgrade);
-        }
-    }
-
-
+    
 }

@@ -256,11 +256,6 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
---- !u!1 &908700850 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7661411771149546889, guid: f424adfcc09934fb78ea4b9ec6fb42d9, type: 3}
-  m_PrefabInstance: {fileID: 922610957}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &914074997
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -272,7 +267,7 @@ PrefabInstance:
     - target: {fileID: 1848306347618175607, guid: ddf853c69ccc30f4abb49082af9c9031, type: 3}
       propertyPath: player
       value: 
-      objectReference: {fileID: 908700850}
+      objectReference: {fileID: 0}
     - target: {fileID: 7135759442590307700, guid: ddf853c69ccc30f4abb49082af9c9031, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
