@@ -16,6 +16,7 @@ public class RoomController : MonoBehaviour
     
     public GameObject shopRoomPrefab;
     private GameObject shop;
+    private UpgradeSpawner upgradeSpawner;
     
     public GameObject bossRoomPrefab;
     private GameObject bossRoom;
@@ -70,6 +71,9 @@ public class RoomController : MonoBehaviour
     private void SpawnShopRoom()
     {
         shop.SetActive(true);
+        upgradeSpawner = shop.GetComponentInChildren<UpgradeSpawner>();
+        Debug.Log("Spawning Upgrades");
+        upgradeSpawner.SpawnUpgrades();
         currentRoom = shop;
         Transform spawnPoint = shop.transform.Find("SpawnPoint");
         player.transform.position = spawnPoint.position;
@@ -97,7 +101,15 @@ public class RoomController : MonoBehaviour
     
     public void NextRoom()
     {
-        if (currentRoom.CompareTag("LobbyRoom"))
+        if (combatRoomCounter >= 5)
+        {
+            SpawnBossRoom();
+            combatRoomCounter = 0;
+            foreach (var room in combatRooms)
+            {
+                room.SetActive(false);
+            }
+        }else if (currentRoom.CompareTag("LobbyRoom"))
         {
             SpawnCombatRoom();
             lobby.SetActive(false);
@@ -112,13 +124,6 @@ public class RoomController : MonoBehaviour
         {
             SpawnCombatRoom();
             shop.SetActive(false);
-        }else if (combatRoomCounter >= 5)
-        {
-            SpawnBossRoom();
-            foreach (var room in combatRooms)
-            {
-                room.SetActive(false);
-            }
         }else if (currentRoom.CompareTag("BossRoom"))
         {
             SpawnBossShopRoom();
@@ -129,4 +134,6 @@ public class RoomController : MonoBehaviour
             bossShopRoom.SetActive(false);
         }
     }
+    
+    
 }

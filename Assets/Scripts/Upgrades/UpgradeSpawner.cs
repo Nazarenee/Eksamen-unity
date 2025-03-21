@@ -3,54 +3,77 @@ using UnityEngine;
 public class UpgradeSpawner : MonoBehaviour
 {
     public GameObject upgradePrefab;  // The Upgrade Pill prefab
-    public Transform spawnPoint;      // Location where it spawns
-    public UpgradeData[] possibleUpgrades; // Array of all possible upgrades
+    public UpgradeData[] possibleUpgrades; // Array of all upgrade types (without rarity)
     public Material[] rarityMaterials; // Materials for each rarity
 
-    private void Start()
+    private Vector3 upgradeSpawn1 = new Vector3(-5, 1.5f, -4);
+    private Vector3 upgradeSpawn2 = new Vector3(-5, 1.5f, 4);
+
+    public void SpawnUpgrades()
     {
-        SpawnUpgrade();
+        SpawnUpgrade(upgradeSpawn1);
+        SpawnUpgrade(upgradeSpawn2);
     }
 
-    private void SpawnUpgrade()
+    private void SpawnUpgrade(Vector3 position)
     {
-        UpgradeData chosenUpgrade = RollUpgrade();
-        if (chosenUpgrade == null) return;
+        UpgradeData baseUpgrade = GetRandomUpgradeType();
+        if (baseUpgrade == null) return;
 
-        // Spawn the Upgrade Pill
-        GameObject upgradeInstance = Instantiate(upgradePrefab, spawnPoint.position, Quaternion.identity);
-        Upgrade upgradeScript = upgradeInstance.GetComponent<Upgrade>();
+        UpgradeRarity rolledRarity = RollRarity();
+        float percentageIncrease = GetPercentageIncrease(rolledRarity);
 
-        // Initialize the upgrade
-        upgradeScript.Initialize(chosenUpgrade, GetMaterialForRarity(chosenUpgrade.rarity));
+        // Create a new instance of UpgradeData dynamically
+        UpgradeData newUpgrade = ScriptableObject.CreateInstance<UpgradeData>();
+        newUpgrade.upgradeType = baseUpgrade.upgradeType;
+        newUpgrade.rarity = rolledRarity;
+        newUpgrade.percentageIncrease = percentageIncrease;
+
+        GameObject upgradeInstance = Instantiate(upgradePrefab, position, Quaternion.identity);
+        
+        UpgradePill upgradeScript = upgradeInstance.GetComponent<UpgradePill>();
+        upgradeScript.Initialize(newUpgrade, GetMaterialForRarity(rolledRarity));
     }
 
-    private UpgradeData RollUpgrade()
+    private UpgradeData GetRandomUpgradeType()
+    {
+        if (possibleUpgrades.Length == 0) return null;
+        return possibleUpgrades[Random.Range(0, possibleUpgrades.Length)];
+    }
+
+    private UpgradeRarity RollRarity()
     {
         float roll = Random.value;
         float cumulative = 0f;
 
-        foreach (UpgradeData upgrade in possibleUpgrades)
+        (UpgradeRarity rarity, float chance)[] rarityChances =
         {
-            float rarityChance = GetRarityChance(upgrade.rarity);
-            cumulative += rarityChance;
+            (UpgradeRarity.Common, 0.50f),
+            (UpgradeRarity.Rare, 0.30f),
+            (UpgradeRarity.Epic, 0.15f),
+            (UpgradeRarity.Heroic, 0.04f),
+            (UpgradeRarity.Legendary, 0.01f)
+        };
 
+        foreach (var pair in rarityChances)
+        {
+            cumulative += pair.chance;
             if (roll <= cumulative)
-                return upgrade;
+                return pair.rarity;
         }
 
-        return null; // Fallback case
+        return UpgradeRarity.Common;
     }
 
-    private float GetRarityChance(UpgradeRarity rarity)
+    private float GetPercentageIncrease(UpgradeRarity rarity)
     {
         switch (rarity)
         {
-            case UpgradeRarity.Common: return 0.50f;
-            case UpgradeRarity.Rare: return 0.30f;
-            case UpgradeRarity.Epic: return 0.15f;
-            case UpgradeRarity.Heroic: return 0.04f;
-            case UpgradeRarity.Legendary: return 0.01f;
+            case UpgradeRarity.Common: return 0.20f;
+            case UpgradeRarity.Rare: return 0.40f;
+            case UpgradeRarity.Epic: return 0.75f;
+            case UpgradeRarity.Heroic: return 1.35f;
+            case UpgradeRarity.Legendary: return 2.00f;
             default: return 0f;
         }
     }
