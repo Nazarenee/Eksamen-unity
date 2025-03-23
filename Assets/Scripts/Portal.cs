@@ -5,6 +5,7 @@ public class Portal : MonoBehaviour
     private RoomController roomController;
     private LevelLoader levelLoader;
 
+
     void Start()
     {
         roomController = FindAnyObjectByType(typeof(RoomController)) as RoomController;
@@ -22,7 +23,8 @@ public class Portal : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Hunter")) 
+
+        if (other.CompareTag("Hunter") && GameObject.FindGameObjectsWithTag("Enemy").Length == 0)
         {
             Debug.Log("Player entered the portal!");
             levelLoader.LoadNextRoom(); // Calls the LevelLoader's transition method
