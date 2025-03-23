@@ -6,22 +6,55 @@ public class PlayerMagic : MonoBehaviour
     public GameObject fireEffectPrefab; 
     public Camera playerCamera; 
 
+    [SerializeField] private float sensitivity = 5.0f; // Controls camera movement speed
+    private float verticalRotation = 0f;  
+
+    void Start()
+    {
+        // Lock cursor to game and hide it
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
+
     void Update()
+    {
+        RotateCamera();
+        HandleMagicAttack();
+    }
+
+    void RotateCamera()
+    {
+        if (playerCamera == null) return;
+
+        // Get mouse movement
+        float mouseX = Input.GetAxis("Mouse X") * sensitivity;
+        float mouseY = Input.GetAxis("Mouse Y") * sensitivity;
+
+        // Rotate player horizontally (left/right)
+        transform.Rotate(Vector3.up * mouseX);
+
+        // Rotate camera vertically (up/down)
+        verticalRotation -= mouseY;
+        verticalRotation = Mathf.Clamp(verticalRotation, -80f, 80f); // Prevents flipping
+        playerCamera.transform.localRotation = Quaternion.Euler(verticalRotation, 0, 0);
+    }
+
+    void HandleMagicAttack()
     {
         if (Input.GetMouseButtonDown(0) && gameObject.CompareTag("Mage"))
         {
             playerAnim.SetTrigger("magic");
 
-            Ray ray = playerCamera.ScreenPointToRay(Input.mousePosition);
+            Ray ray = playerCamera.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2)); // Center of screen
             RaycastHit hit;
 
             if (Physics.Raycast(ray, out hit))
             {
                 Debug.Log("Ray hit: " + hit.point);
 
-                GameObject fireball = Instantiate(fireEffectPrefab, hit.point, Quaternion.identity);
+                GameObject fireball = Instantiate(fireEffectPrefab, transform.position + transform.forward * 1.5f, Quaternion.identity);
 
-                Vector3 direction = hit.point - fireball.transform.position;
+                Vector3 direction = (hit.point - fireball.transform.position).normalized;
                 fireball.transform.rotation = Quaternion.LookRotation(direction);
 
                 Rigidbody rb = fireball.GetComponent<Rigidbody>();
@@ -29,8 +62,8 @@ public class PlayerMagic : MonoBehaviour
                 {
                     rb = fireball.AddComponent<Rigidbody>();
                 }
-                rb.useGravity = false; 
-                rb.linearVelocity = direction.normalized * 10f; 
+                rb.useGravity = false;
+                rb.linearVelocity = direction * 10f; 
 
                 Destroy(fireball, 2f);
             }

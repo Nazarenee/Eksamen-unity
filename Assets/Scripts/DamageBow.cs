@@ -9,7 +9,7 @@ public class DamageBow : MonoBehaviour
     public Transform bulletSpawnPoint;
     public GameObject bulletPrefab;
     public float bulletSpeed = 10f;
-    
+
     [SerializeField] private float sensitivity = 5.0f; // Controls camera movement speed
     private float verticalRotation = 0f;
     
