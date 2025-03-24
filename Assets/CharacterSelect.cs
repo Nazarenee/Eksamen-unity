@@ -1,30 +1,22 @@
 using UnityEngine;
-using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class CharacterSelect : MonoBehaviour
 {
-    // Reference to your character manager
-    private CharacterManager characterManager;
+    public string characterName; // "Hunter", "Mage", or "Warrior"
     
-    void Start()
+    private void OnMouseDown()
     {
-        // Find the character manager in the scene
-        characterManager = FindObjectOfType<CharacterManager>();
-        
-        // If none exists, create one
+        // Find or create character manager
+        CharacterManager characterManager = FindObjectOfType<CharacterManager>();
         if (characterManager == null)
         {
             GameObject managerObject = new GameObject("CharacterManager");
             characterManager = managerObject.AddComponent<CharacterManager>();
         }
-    }
-    
-    // Call this method from your UI buttons
-    public void SelectCharacter(string characterPrefabName)
-    {
-        // Store the selected character name
-        characterManager.SetSelectedCharacter(characterPrefabName);
+        
+        // Set selected character
+        characterManager.SetSelectedCharacter(characterName);
         
         // Load the main game scene
         SceneManager.LoadScene("Scene1");

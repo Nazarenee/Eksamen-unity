@@ -653,22 +653,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1848306347618175607, guid: ddf853c69ccc30f4abb49082af9c9031, type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 781404209499571175, guid: 44b55dca9a31442f4a7bcf3efa5af2e9, type: 3}
-    - target: {fileID: 1848306347618175607, guid: ddf853c69ccc30f4abb49082af9c9031, type: 3}
-      propertyPath: bossRoomPrefab
-      value: 
-      objectReference: {fileID: 2506690196317835967, guid: 163026d8b20eb644d948ef989c580db5, type: 3}
-    - target: {fileID: 1848306347618175607, guid: ddf853c69ccc30f4abb49082af9c9031, type: 3}
-      propertyPath: combatRoomPrefabs.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 1848306347618175607, guid: ddf853c69ccc30f4abb49082af9c9031, type: 3}
-      propertyPath: 'combatRoomPrefabs.Array.data[4]'
-      value: 
-      objectReference: {fileID: 8224340844097246743, guid: 62388fafff7c70b4e804d1559abfc37e, type: 3}
     - target: {fileID: 7135759442590307700, guid: ddf853c69ccc30f4abb49082af9c9031, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -712,10 +696,6 @@ PrefabInstance:
     - target: {fileID: 7629470590308018773, guid: ddf853c69ccc30f4abb49082af9c9031, type: 3}
       propertyPath: m_Name
       value: GameController
-      objectReference: {fileID: 0}
-    - target: {fileID: 7629470590308018773, guid: ddf853c69ccc30f4abb49082af9c9031, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
