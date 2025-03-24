@@ -8,10 +8,8 @@ public class CharacterHighlight : MonoBehaviour
     
     void Start()
     {
-        // Get all renderers in the character and its children
         modelRenderers = GetComponentsInChildren<Renderer>();
         
-        // Store original materials
         originalMaterials = new Material[modelRenderers.Length][];
         for (int i = 0; i < modelRenderers.Length; i++)
         {
@@ -23,7 +21,6 @@ public class CharacterHighlight : MonoBehaviour
     {
         if (highlightMaterial != null)
         {
-            // Apply highlight material to all renderers
             foreach (Renderer renderer in modelRenderers)
             {
                 Material[] newMaterials = new Material[renderer.materials.Length];
@@ -38,7 +35,6 @@ public class CharacterHighlight : MonoBehaviour
     
     void OnMouseExit()
     {
-        // Restore original materials
         for (int i = 0; i < modelRenderers.Length; i++)
         {
             modelRenderers[i].materials = originalMaterials[i];
