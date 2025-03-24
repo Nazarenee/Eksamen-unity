@@ -153,15 +153,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 663fceb876d2c4e219c42ec38541a2e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioSource: {fileID: 0}
+  bowDrawClip: {fileID: 0}
+  bowReleaseClip: {fileID: 0}
   playerAnimator: {fileID: 2934065610372020852}
   playerRigidbody: {fileID: 6775809481619030674}
-  walkSpeed: 180
-  walkBackwardSpeed: 180
-  defaultWalkSpeed: 180
-  runSpeedBoost: 220
+  walkSpeed: 5
+  walkBackwardSpeed: 5
+  defaultWalkSpeed: 5
   rotationSpeed: 90
-  isWalking: 0
-  isAttacking: 0
   playerTransform: {fileID: 6619096343746277079}
 --- !u!1 &6794318576042567752
 GameObject:
@@ -1003,9 +1003,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: daac341ffefcc4395b2dc715cf8cd3f7, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2934065610372020852}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: daac341ffefcc4395b2dc715cf8cd3f7, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 356792301224699445}
   m_SourcePrefab: {fileID: 100100000, guid: daac341ffefcc4395b2dc715cf8cd3f7, type: 3}
 --- !u!1 &3536144682931217399 stripped
 GameObject:
@@ -1034,19 +1031,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &356792301224699445
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3536144682931217399}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 746b4cc88d70df74998b21651896213b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  trail: {fileID: 0}
 --- !u!4 &4204453806822406477 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: daac341ffefcc4395b2dc715cf8cd3f7, type: 3}
