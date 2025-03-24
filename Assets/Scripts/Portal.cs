@@ -24,7 +24,7 @@ public class Portal : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
 
-        if (other.CompareTag("Hunter") && GameObject.FindGameObjectsWithTag("Enemy").Length == 0)
+        if (other.CompareTag("Hunter") || other.CompareTag("Mage") || other.CompareTag("Warrior") && GameObject.FindGameObjectsWithTag("Enemy").Length == 0)
         {
             Debug.Log("Player entered the portal!");
             levelLoader.LoadNextRoom(); // Calls the LevelLoader's transition method
