@@ -132,6 +132,7 @@ public class RoomController : MonoBehaviour
         {
             SpawnCombatRoom();
             shop.SetActive(false);
+            upgradeSpawner.DespawnUpgrades();
         }else if (currentRoom.CompareTag("BossRoom"))
         {
             SpawnBossShopRoom();

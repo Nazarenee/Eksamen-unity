@@ -82,4 +82,14 @@ public class UpgradeSpawner : MonoBehaviour
     {
         return rarityMaterials[(int)rarity];
     }
+    
+    public void DespawnUpgrades()
+    {
+        GameObject[] upgrades = GameObject.FindGameObjectsWithTag("Upgrade");
+        foreach (var upgrade in upgrades)
+        {
+            Destroy(upgrade);
+        }
+    }
+
 }
