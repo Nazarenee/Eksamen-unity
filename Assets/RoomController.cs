@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -29,8 +30,8 @@ public class RoomController : MonoBehaviour
     public GameObject bossPrefab;
     void Start()
     {
+        StartCoroutine(FindPlayerWithDelay());
         InitializeRooms();
-        FindPlayer();
     }
 
     
@@ -157,15 +158,17 @@ public class RoomController : MonoBehaviour
         }
     }
     
-    private void FindPlayer()
+    private IEnumerator FindPlayerWithDelay()
     {
+        yield return new WaitForSeconds(0.1f); // Wait a small amount of time to allow spawning
+
         foreach (string tag in playerTags)
         {
             player = GameObject.FindGameObjectWithTag(tag);
             if (player != null)
             {
                 Debug.Log($"Player found with tag: {tag}");
-                return;
+                yield break; 
             }
         }
 
