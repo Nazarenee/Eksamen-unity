@@ -154,6 +154,7 @@ GameObject:
   - component: {fileID: 3019365649830320968}
   - component: {fileID: 6747260286209424681}
   - component: {fileID: -6217495677301376}
+  - component: {fileID: 2228952132233157668}
   m_Layer: 2
   m_Name: Hunter
   m_TagString: Hunter
@@ -448,6 +449,21 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2228952132233157668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7661411771149546889}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e2ee57bf88824a6b8a2f490f7302527, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  currentHealth: 0
+  healthText: {fileID: 0}
 --- !u!1001 &134502838518936514
 PrefabInstance:
   m_ObjectHideFlags: 0
