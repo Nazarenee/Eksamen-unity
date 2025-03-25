@@ -31,7 +31,7 @@ public class RoomController : MonoBehaviour
     void Start()
     {
         StartCoroutine(FindPlayerWithDelay());
-        InitializeRooms();
+        Invoke ("InitializeRooms", 0.5f);
     }
 
     
