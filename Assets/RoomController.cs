@@ -4,7 +4,8 @@ using UnityEngine;
 public class RoomController : MonoBehaviour
 {
     private List<GameObject> enemies = new List<GameObject>();
-    public GameObject player;
+    private GameObject player;
+    private string[] playerTags = { "Hunter", "Mage", "Warrior" };
     private GameObject currentRoom;
     private int combatRoomCounter = 0;
     
@@ -29,6 +30,7 @@ public class RoomController : MonoBehaviour
     void Start()
     {
         InitializeRooms();
+        FindPlayer();
     }
 
     
@@ -73,7 +75,7 @@ public class RoomController : MonoBehaviour
         {
             Instantiate(enemyPrefab, enemySpawn.transform.position, Quaternion.identity);
         }
-        
+        Debug.Log($"SpawnPoint for {selectedRoom.name} is at: {spawnPoint?.position}");
         player.transform.position = spawnPoint.position;
     }
     
@@ -100,6 +102,8 @@ public class RoomController : MonoBehaviour
         bossRoom.SetActive(true);
         currentRoom = bossRoom;
         Transform spawnPoint = bossRoom.transform.Find("SpawnPoint");
+        Transform bossSpawn = bossRoom.transform.Find("BossSpawn");
+        Instantiate(bossPrefab, bossSpawn.position, Quaternion.identity);
         player.transform.position = spawnPoint.position;
         
     }
@@ -151,6 +155,21 @@ public class RoomController : MonoBehaviour
             SpawnCombatRoom();
             bossShopRoom.SetActive(false);
         }
+    }
+    
+    private void FindPlayer()
+    {
+        foreach (string tag in playerTags)
+        {
+            player = GameObject.FindGameObjectWithTag(tag);
+            if (player != null)
+            {
+                Debug.Log($"Player found with tag: {tag}");
+                return;
+            }
+        }
+
+        Debug.LogError("No player found! Ensure the selected character is instantiated and has the correct tag.");
     }
     
     
