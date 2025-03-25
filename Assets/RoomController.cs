@@ -23,6 +23,9 @@ public class RoomController : MonoBehaviour
     
     public GameObject bossShopRoomPrefab;
     private GameObject bossShopRoom;
+
+    public GameObject enemyPrefab;
+    public GameObject bossPrefab;
     void Start()
     {
         InitializeRooms();
@@ -65,6 +68,12 @@ public class RoomController : MonoBehaviour
         selectedRoom.SetActive(true);
         currentRoom = selectedRoom;
         Transform spawnPoint = selectedRoom.transform.Find("SpawnPoint");
+        Transform enemySpawns = selectedRoom.transform.Find("EnemySpawns");
+        foreach (Transform enemySpawn in enemySpawns)
+        {
+            Instantiate(enemyPrefab, enemySpawn.transform.position, Quaternion.identity);
+        }
+        
         player.transform.position = spawnPoint.position;
     }
     

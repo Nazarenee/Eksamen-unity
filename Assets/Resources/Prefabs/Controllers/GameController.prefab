@@ -54,3 +54,5 @@ MonoBehaviour:
   shopRoomPrefab: {fileID: 4137628223530444123, guid: ed0cb88ee9a646c4aa1d499fee9afebe, type: 3}
   bossRoomPrefab: {fileID: 2506690196317835967, guid: 163026d8b20eb644d948ef989c580db5, type: 3}
   bossShopRoomPrefab: {fileID: 4137628223530444123, guid: ed0cb88ee9a646c4aa1d499fee9afebe, type: 3}
+  enemyPrefab: {fileID: 8794693572979240212, guid: 482319b729f6e42cbb51922d27e06e3a, type: 3}
+  bossPrefab: {fileID: 8794693572979240212, guid: 482319b729f6e42cbb51922d27e06e3a, type: 3}
