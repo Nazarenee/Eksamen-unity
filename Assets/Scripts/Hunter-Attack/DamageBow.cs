@@ -11,13 +11,13 @@ public class DamageBow : MonoBehaviour
     public float bulletSpeed = 10f;
     
 
-    [SerializeField] private float sensitivity = 5.0f; // Controls camera movement speed
+    [SerializeField] private float sensitivity = 5.0f; 
     private float verticalRotation = 0f;
     
     
     void Start()
     {
-        // Lock cursor to game and hide it
+        
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
@@ -35,11 +35,14 @@ public class DamageBow : MonoBehaviour
         float mouseX = Input.GetAxis("Mouse X") * sensitivity; 
         float mouseY = Input.GetAxis("Mouse Y") * sensitivity;
 
+        // Rotate the player
         transform.Rotate(Vector3.up * mouseX);
 
-        
+        // * Rotate the camera
         verticalRotation -= mouseY;
+        //* Clamp the vertical rotation
         verticalRotation = Mathf.Clamp(verticalRotation, -80f, 80f); 
+        //* Apply the rotation
         playerCamera.transform.localRotation = Quaternion.Euler(verticalRotation, 0, 0);
     }
 
@@ -51,16 +54,21 @@ public class DamageBow : MonoBehaviour
             return;
         }
 
+        // *  Ray from screen center
         Ray ray = playerCamera.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2)); 
         RaycastHit hit;
 
         if (Physics.Raycast(ray, out hit, BulletRange))
         {
-            
+            // * Hit point
             Vector3 targetPosition = hit.point;
+            
+            // * Spawn the arrow
             var arrow = Instantiate(bulletPrefab, bulletSpawnPoint.position, bulletSpawnPoint.rotation);
-
+            
             Vector3 direction = (targetPosition - bulletSpawnPoint.position).normalized;
+            
+            // * Arrow rotation ( When counting for mouse position != camera position)
             arrow.transform.rotation = Quaternion.LookRotation(direction);
             arrow.transform.rotation = Quaternion.Euler(90, arrow.transform.rotation.eulerAngles.y, arrow.transform.rotation.eulerAngles.z);
 

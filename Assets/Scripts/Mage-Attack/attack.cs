@@ -11,7 +11,6 @@ public class PlayerMagic : MonoBehaviour
 
     void Start()
     {
-        // Lock cursor to game and hide it
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
@@ -26,16 +25,16 @@ public class PlayerMagic : MonoBehaviour
     {
         if (playerCamera == null) return;
 
-        // Get mouse movement
+        // * Get mouse movement
         float mouseX = Input.GetAxis("Mouse X") * sensitivity;
         float mouseY = Input.GetAxis("Mouse Y") * sensitivity;
 
-        // Rotate player horizontally (left/right)
+        // * Rotate player horizontally (left/right)
         transform.Rotate(Vector3.up * mouseX);
 
-        // Rotate camera vertically (up/down)
+        // * Rotate camera vertically (up/down)
         verticalRotation -= mouseY;
-        verticalRotation = Mathf.Clamp(verticalRotation, -80f, 80f); // Prevents flipping
+        verticalRotation = Mathf.Clamp(verticalRotation, -80f, 80f); 
         playerCamera.transform.localRotation = Quaternion.Euler(verticalRotation, 0, 0);
     }
 
@@ -45,16 +44,17 @@ public class PlayerMagic : MonoBehaviour
         {
             playerAnim.SetTrigger("magic");
 
-            Ray ray = playerCamera.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2)); // Center of screen
+            Ray ray = playerCamera.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2)); 
             RaycastHit hit;
 
             if (Physics.Raycast(ray, out hit))
             {
-                Debug.Log("Ray hit: " + hit.point);
 
+                //* Spawn fireball infront of player
                 GameObject fireball = Instantiate(fireEffectPrefab, transform.position + transform.forward * 1.5f, Quaternion.identity);
 
                 Vector3 direction = (hit.point - fireball.transform.position).normalized;
+                // * Rotate to face direction
                 fireball.transform.rotation = Quaternion.LookRotation(direction);
 
                 Rigidbody rb = fireball.GetComponent<Rigidbody>();

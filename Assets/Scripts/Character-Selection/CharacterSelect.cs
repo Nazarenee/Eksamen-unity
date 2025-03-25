@@ -10,7 +10,7 @@ public class CharacterSelect : MonoBehaviour
     {
         if (selectionCamera == null)
         {
-            selectionCamera = Camera.main;
+            selectionCamera = Camera.main;  
             
             if (selectionCamera == null)
             {

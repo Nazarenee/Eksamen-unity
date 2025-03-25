@@ -23,15 +23,19 @@ public class PlayerMovement : MonoBehaviour
     {
         controls = new PlayerControls();
 
+        // * Movement 
         controls.Player.Movement.performed += ctx => moveInput = ctx.ReadValue<Vector2>();
         controls.Player.Movement.canceled += ctx => moveInput = Vector2.zero;
 
+        // * Sprinting 
         controls.Player.Sprint.performed += ctx => isSprinting = true;
         controls.Player.Sprint.canceled += ctx => isSprinting = false;
 
+        // * Attacking
         controls.Player.Attack.performed += ctx => Attack(); 
     }
 
+    // * Enable and disable input
     private void OnEnable()
     {
         controls.Enable();
@@ -44,18 +48,20 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        // * Freeze movement when attacking
         if (isAttacking)
         {
             playerRigidbody.linearVelocity = Vector3.zero; 
             return; 
         }
 
+        // * Movement direction based on player's forward and right vectors
         Vector3 forward = playerTransform.forward;
         forward.y = 0;
 
         Vector3 right = playerTransform.right;
         right.y = 0;
-
+        
         Vector3 movement = Vector3.zero;
         float currentSpeed = isSprinting ? walkSpeed * 2f : walkSpeed;
 
@@ -64,17 +70,16 @@ public class PlayerMovement : MonoBehaviour
             movement += forward * moveInput.y * currentSpeed;
         }
 /*
-        if (moveInput.x != 0)  // Rotate
-        {
-            playerTransform.Rotate(0, moveInput.x * rotationSpeed * Time.deltaTime, 0);
-        }
-*/
+    
+*/         //* Movement to rigidbody
         playerRigidbody.linearVelocity = new Vector3(movement.x, playerRigidbody.linearVelocity.y, movement.z);
     }
 
 
     private void Update()
     {
+        
+        // * Prevent animation during attack
         if (isAttacking)
         {
             playerAnimator.SetFloat("Speed", 0f);  
@@ -113,6 +118,7 @@ public class PlayerMovement : MonoBehaviour
         
         audioSource.PlayOneShot(bowDrawClip);
 
+        // * Reset movement-related triggers
         playerAnimator.ResetTrigger("walk");
         playerAnimator.ResetTrigger("walkback");
         playerAnimator.ResetTrigger("run");

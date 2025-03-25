@@ -6,16 +6,16 @@ using Vector2 = System.Numerics.Vector2;
 public class EnemyHealth : MonoBehaviour
 {
     public int health = 100;
-    public GameObject bloodEffectPrefab; // Assign a blood particle system prefab in the Inspector
+    public GameObject bloodEffectPrefab; 
 
     
     
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Sword")) // Assuming your sword has the "Sword" tag
+        if (other.CompareTag("Sword")) 
         {
             Debug.Log("HIT ENEMY WITH SWORD!");
-            TakeDamage(20, other.transform.position); // Damage from the sword
+            TakeDamage(20, other.transform.position); 
         }
     }
     public void TakeDamage(int damage, Vector3 hitPosition)
@@ -23,7 +23,6 @@ public class EnemyHealth : MonoBehaviour
         Debug.Log("enemy took damage: " + damage);
         health -= damage;
 
-        // Spawn blood effect at hit position
         if (bloodEffectPrefab != null)
         {
             Instantiate(bloodEffectPrefab, hitPosition, Quaternion.identity);
@@ -37,6 +36,6 @@ public class EnemyHealth : MonoBehaviour
 
     void Die()
     {
-        Destroy(gameObject); // Handle enemy death
+        Destroy(gameObject); 
     }
 }
