@@ -316,7 +316,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68d088653f74241459d2e93efaaff5a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damage: 10
+  Damage: 100
   BulletRange: 50
   playerCamera: {fileID: 8644257101306323732}
   bulletSpawnPoint: {fileID: 1544020154506758905}
