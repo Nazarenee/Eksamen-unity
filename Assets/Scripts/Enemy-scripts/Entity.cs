@@ -8,7 +8,7 @@ namespace DefaultNamespace
         [SerializeField] public float maxHealth;
         public float currentHealth;
 
-        // Health Bar variables
+        // * Health Bar variables
         [SerializeField] private GameObject healthBarPrefab;
         private GameObject healthBarInstance;
         private Slider healthSlider;
@@ -22,15 +22,18 @@ namespace DefaultNamespace
 
         void CreateHealthBar()
         {
+            // * Instantiating the healthBarPrefab
             healthBarInstance = Instantiate(healthBarPrefab, transform);
+            
+            //* Getting the Slider component from the Slider prefab
             healthSlider = healthBarInstance.GetComponent<Slider>();
 
             if (healthSlider == null)
             {
-                Debug.LogError("Health bar prefab must have a Slider component!");
                 return;
             }
 
+            //* Setting slider values 
             healthSlider.minValue = 0;
             healthSlider.maxValue = maxHealth;
 
@@ -38,12 +41,14 @@ namespace DefaultNamespace
 
             healthSlider.wholeNumbers = false;
 
+            //* Health bar color to green
             Image fillImage = healthSlider.fillRect.GetComponent<Image>();
             if (fillImage != null)
             {
                 fillImage.color = Color.green;
             }
 
+            //* Position the health bar above the entity
             healthBarInstance.transform.localPosition = healthBarOffset;
         }
 
@@ -53,13 +58,15 @@ namespace DefaultNamespace
         {
             if (healthBarInstance != null)
             {
+                //* Heaælthbar follolws the entity
                 healthBarInstance.transform.position = transform.position + healthBarOffset;
 
+                //* Healthbar always faces the camera
                 healthBarInstance.transform.LookAt(Camera.main.transform);
                 healthBarInstance.transform.Rotate(0, 180, 0);
 
                 healthSlider.value = currentHealth;
-
+                
                 UpdateHealthBarColor();
             }
         }
@@ -88,23 +95,18 @@ namespace DefaultNamespace
 
         public void TakeDamage(float damage, Vector3 hitPosition)
         {
-            Debug.Log("Damage taken: " + damage + " | Before damage: " + currentHealth);
             currentHealth -= damage;
-            Debug.Log("After damage: " + currentHealth);
 
             if (healthSlider != null)
             {
                 healthSlider.value = currentHealth;
-                Debug.Log("Updating health slider to: " + currentHealth);
             }
             else
             {
-                Debug.LogError("healthSlider is null in TakeDamage!");
             }
 
             if (currentHealth <= 0)
             {
-                Debug.Log("Calling Die() for: " + gameObject.name);
                 Die();
             }
         }
@@ -112,7 +114,6 @@ namespace DefaultNamespace
 
         void Die()
         {
-            Debug.Log("Enemy died!");
 
             if (healthBarInstance != null)
             {
