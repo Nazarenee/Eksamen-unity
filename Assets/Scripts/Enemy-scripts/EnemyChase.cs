@@ -10,6 +10,10 @@ public class EnemyChase : MonoBehaviour
     [Header("Animation Settings")]
     public float speedThreshold = 0.5f;
 
+    [Header("Damage Settings")]
+    public float damageInterval = 1f; // Time between damage ticks
+    private float lastDamageTime;
+
     private NavMeshAgent agent;
     private Animator animator;
     private Transform player;
@@ -55,5 +59,25 @@ public class EnemyChase : MonoBehaviour
         // Set animation speed based on agent velocity
         float animationSpeed = agent.velocity.magnitude > speedThreshold ? 1f : 0.01f;
         animator.SetFloat(SPEED_PARAMETER, animationSpeed);
+    }
+
+    void OnCollisionStay(Collision collision)
+    {
+        // Check if the collided object is the hunter
+        if (collision.gameObject.CompareTag("Hunter"))
+        {
+            // Check if enough time has passed since last damage
+            if (Time.time - lastDamageTime >= damageInterval)
+            {
+                // Try to get the HunterHealth component
+                HunterHealth hunterHealth = collision.gameObject.GetComponent<HunterHealth>();
+                
+                if (hunterHealth != null)
+                {
+                    hunterHealth.TakeDamage(20);
+                    lastDamageTime = Time.time;
+                }
+            }
+        }
     }
 }
