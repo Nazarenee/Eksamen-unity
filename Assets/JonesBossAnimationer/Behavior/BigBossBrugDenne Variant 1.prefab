@@ -1,0 +1,165 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &153315740276414307
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5863293222595789037, guid: 03624c210965fbc4b8586c4bb3efd554, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5863293222595789037, guid: 03624c210965fbc4b8586c4bb3efd554, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5863293222595789037, guid: 03624c210965fbc4b8586c4bb3efd554, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6421433557223605090, guid: 03624c210965fbc4b8586c4bb3efd554, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6421433557223605090, guid: 03624c210965fbc4b8586c4bb3efd554, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7438733152545234777, guid: 03624c210965fbc4b8586c4bb3efd554, type: 3}
+      propertyPath: m_Name
+      value: BigBossBrugDenne Variant 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7813851797722826211, guid: 03624c210965fbc4b8586c4bb3efd554, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -23.379625
+      objectReference: {fileID: 0}
+    - target: {fileID: 7813851797722826211, guid: 03624c210965fbc4b8586c4bb3efd554, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.0000009536743
+      objectReference: {fileID: 0}
+    - target: {fileID: 7813851797722826211, guid: 03624c210965fbc4b8586c4bb3efd554, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 6.361861
+      objectReference: {fileID: 0}
+    - target: {fileID: 7813851797722826211, guid: 03624c210965fbc4b8586c4bb3efd554, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7813851797722826211, guid: 03624c210965fbc4b8586c4bb3efd554, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7813851797722826211, guid: 03624c210965fbc4b8586c4bb3efd554, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7813851797722826211, guid: 03624c210965fbc4b8586c4bb3efd554, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7813851797722826211, guid: 03624c210965fbc4b8586c4bb3efd554, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7813851797722826211, guid: 03624c210965fbc4b8586c4bb3efd554, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7813851797722826211, guid: 03624c210965fbc4b8586c4bb3efd554, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7438733152545234777, guid: 03624c210965fbc4b8586c4bb3efd554, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7216289184226424695}
+    - targetCorrespondingSourceObject: {fileID: 7438733152545234777, guid: 03624c210965fbc4b8586c4bb3efd554, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5848711345313488453}
+    - targetCorrespondingSourceObject: {fileID: 7438733152545234777, guid: 03624c210965fbc4b8586c4bb3efd554, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6636387978918387663}
+  m_SourcePrefab: {fileID: 100100000, guid: 03624c210965fbc4b8586c4bb3efd554, type: 3}
+--- !u!1 &7285451704278419514 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7438733152545234777, guid: 03624c210965fbc4b8586c4bb3efd554, type: 3}
+  m_PrefabInstance: {fileID: 153315740276414307}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7216289184226424695
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7285451704278419514}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0038c16c34866b4f9e25c9c0dc0f7e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Graph: {fileID: -2174837376487145762, guid: 3b738277ff33b7f47a804d6e607fe213, type: 2}
+  m_BlackboardVariableOverridesList:
+  - rid: 4247781231211839781
+  - rid: 4247781231211839826
+  m_IsInitialised: 0
+  m_IsStarted: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 4247781231211839781
+      type: {class: 'BlackboardVariable`1[[UnityEngine.GameObject, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 1
+          m_Value1: 0
+        Name: Self
+        m_Value: {fileID: 7285451704278419514}
+    - rid: 4247781231211839826
+      type: {class: 'BlackboardVariable`1[[UnityEngine.GameObject, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 1173392247694314964
+          m_Value1: 11272747200378744245
+        Name: Target
+        m_Value: {fileID: 7661411771149546889, guid: f424adfcc09934fb78ea4b9ec6fb42d9, type: 3}
+--- !u!195 &5848711345313488453
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7285451704278419514}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!114 &6636387978918387663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7285451704278419514}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7bdb3cf8d97a7d44a9a171c0e40931f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackRange: 5
