@@ -132,6 +132,7 @@ MonoBehaviour:
   audioSource: {fileID: 7072009548223063792}
   arrowHitsWoodClip: {fileID: 8300000, guid: 14a2e48f50e95dc46a4b66cfe3b2cee3, type: 3}
   arrowFallsOnGroundClip: {fileID: 8300000, guid: 9361dedb2b9689b4ca2adb1fec412771, type: 3}
+  arrowHitsEnemyClip: {fileID: 8300000, guid: cb8c610f8f9e148598f16efae2195ed4, type: 3}
 --- !u!65 &-707901514900795849
 BoxCollider:
   m_ObjectHideFlags: 0

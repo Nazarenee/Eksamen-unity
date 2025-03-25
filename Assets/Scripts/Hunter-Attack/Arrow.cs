@@ -8,7 +8,10 @@ public class Arrow : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Upgrade"))
+        if (collision.gameObject.CompareTag("Upgrade") )
+        {
+            return;
+        }
         {
             PlaySound(arrowHitsWoodClip);
         }
