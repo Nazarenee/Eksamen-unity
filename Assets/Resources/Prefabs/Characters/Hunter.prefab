@@ -323,7 +323,6 @@ MonoBehaviour:
   bulletPrefab: {fileID: 4865309214770636011, guid: 45804eb2722b83845adbcf2d72da12dd, type: 3}
   bulletSpeed: 10
   sensitivity: 2
-  arrowHitsEnemyClip: {fileID: 8300000, guid: cb8c610f8f9e148598f16efae2195ed4, type: 3}
 --- !u!114 &6747260286209424681
 MonoBehaviour:
   m_ObjectHideFlags: 0
